@@ -1,0 +1,1 @@
+{% extends 'airline/base.html' %}{% block content %}<h1>Вход</h1>{% if form.errors %}<p class="error">Неправильный логин или пароль</p>{% endif %}<form method="post">{% csrf_token %}{{form.as_p}}<button>Войти</button></form>{% endblock %}

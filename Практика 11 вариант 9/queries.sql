@@ -1,0 +1,18 @@
+SELECT * FROM flights;
+SELECT * FROM flights WHERE price > 7000;
+SELECT * FROM flights ORDER BY departure DESC;
+SELECT f.number,a.city FROM flights f JOIN airports a ON a.id=f.origin_id;
+SELECT a.city,f.number FROM airports a LEFT JOIN flights f ON f.origin_id=a.id;
+SELECT origin_id,COUNT(*) FROM flights GROUP BY origin_id;
+SELECT origin_id,AVG(price) FROM flights GROUP BY origin_id HAVING AVG(price)>5000;
+SELECT SUM(price) FROM flights;
+SELECT MAX(price),MIN(price) FROM flights;
+SELECT * FROM flights WHERE price>(SELECT AVG(price) FROM flights);
+SELECT * FROM flights WHERE price>5000 AND free_seats>=20;
+SELECT f.number,a.city,d.city FROM flights f JOIN airports a ON a.id=f.origin_id JOIN airports d ON d.id=f.destination_id;
+SELECT p.full_name,t.seat,f.number FROM tickets t JOIN passengers p ON p.id=t.passenger_id JOIN flights f ON f.id=t.flight_id;
+INSERT INTO passengers(full_name,email) VALUES('Тестовый пассажир','sqltest@example.org');
+UPDATE passengers SET full_name='Тестовый пассажир 2' WHERE email='sqltest@example.org';
+DELETE FROM passengers WHERE email='sqltest@example.org';
+SELECT * FROM flights WHERE number LIKE 'SU%';
+EXPLAIN QUERY PLAN SELECT * FROM flights WHERE origin_id=1 AND destination_id=2;
